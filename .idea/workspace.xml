@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6913859-7451-4843-bcae-0938e283ef1e" name="Default Changelist" comment="" />
+    <list default="true" id="a6913859-7451-4843-bcae-0938e283ef1e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Zcb7bEoZwIQSFUQjUHCh7vo6mJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -122,41 +129,51 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="589" y="328" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/0.0.1536.824@0.0.1536.824" timestamp="1585294994646" />
-    <state width="1515" height="273" key="GridCell.Tab.0.bottom" timestamp="1585295471840">
+    <state width="1515" height="205" key="GridCell.Tab.0.bottom" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="273" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585295471840" />
-    <state width="1515" height="273" key="GridCell.Tab.0.center" timestamp="1585295471840">
+    <state width="1515" height="205" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.0.center" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="273" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585295471840" />
-    <state width="1515" height="273" key="GridCell.Tab.0.left" timestamp="1585295471839">
+    <state width="1515" height="205" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.0.left" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="273" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585295471839" />
-    <state width="1515" height="273" key="GridCell.Tab.0.right" timestamp="1585295471840">
+    <state width="1515" height="205" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.0.right" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="273" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585295471840" />
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1585295349835">
+    <state width="1515" height="205" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.1.bottom" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585295349835" />
-    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1585295349834">
+    <state width="1515" height="205" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.1.center" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585295349834" />
-    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1585295349834">
+    <state width="1515" height="205" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.1.left" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585295349834" />
-    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1585295349835">
+    <state width="1515" height="205" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
+    <state width="1515" height="205" key="GridCell.Tab.1.right" timestamp="1585307028592">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585295349835" />
+    <state width="1515" height="205" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585307028592" />
     <state x="272" y="57" key="SettingsEditor" timestamp="1585141713449">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="272" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585141713449" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="len(self.cipher_text_var.get())" language="Python" />
+        <watch expression="cipher_text_b" language="Python" />
+        <watch expression="len(cipher_text)" language="Python" />
+        <watch expression="plain_text_b" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
