@@ -103,10 +103,10 @@ class MyDesGui:
                   command=lambda: self.double_des_encrypt()
                   ).grid(row=0, column=3, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重两密加密',
-                  command=lambda: self.encrypt(self.key_var.get())
+                  command=lambda: self.triple_two_keys_encrypt()
                   ).grid(row=0, column=4, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重三密加密',
-                  command=lambda: self.encrypt(self.key_var.get())
+                  command=lambda: self.triple_three_keys_encrypt()
                   ).grid(row=0, column=5, stick=tk.W + tk.E)
 
         tk.Button(des_LF,text='随机生成密钥1',command=lambda:self.random_key(self.key_var)).grid(row=1,column=2,stick=tk.W+tk.E)
@@ -119,10 +119,10 @@ class MyDesGui:
                   command=lambda: self.double_des_decrypt()
                   ).grid(row=4, column=3, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重两密解密',
-                  command=lambda: self.decrypt(self.key_var.get())
+                  command=lambda: self.triple_two_keys_decrypt()
                   ).grid(row=4, column=4, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重三密解密',
-                  command=lambda: self.decrypt(self.key_var.get())
+                  command=lambda: self.triple_three_keys_decrypt()
                   ).grid(row=4, column=5, stick=tk.W + tk.E)
 
     def random_key(self,key_var:tk.StringVar=None):
@@ -258,10 +258,32 @@ class MyDesGui:
         return plain_text_b
 
     def triple_three_keys_encrypt(self):
-        pass
+        '''
+        三重三密加密
+        :return:
+        '''
+        # C = E_k3(D_k2(E_k1(P)))
+        a_text_b = self.encrypt(self.key_var.get())
+        b_text_b = self.decrypt(self.key2_var.get(), a_text_b)
+        cipher_text_b = self.encrypt(self.key3_var.get(), b_text_b)
+
+        self.show_cipher_text(cipher_text_b)
+
+        return cipher_text_b
 
     def triple_three_keys_decrypt(self):
-        pass
+        '''
+        三重三密解密
+        :return:
+        '''
+        # P = D_k3(E_k2(D_k1(C)))
+        b_text_b = self.decrypt(self.key_var.get())
+        a_text_b = self.encrypt(self.key2_var.get(), b_text_b)
+        plain_text_b = self.decrypt(self.key3_var.get(), a_text_b)
+
+        self.show_plain_text(plain_text_b)
+
+        return plain_text_b
 
 if __name__ == '__main__':
     myGui = MyDesGui()
