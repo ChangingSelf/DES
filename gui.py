@@ -41,6 +41,28 @@ class MyDes:
         alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()'
         return ''.join(random.sample(alphabet,8))
 
+
+
+    def bytesToHexString(self,bs):
+        '''
+        将字节串转换为十六进制字符串
+        eg:
+        b'\x01#Eg\x89\xab\xcd\xef\x01#Eg\x89\xab\xcd\xef'
+        '01 23 45 67 89 AB CD EF 01 23 45 67 89 AB CD EF'
+        '''
+        return ''.join(['%02X ' % b for b in bs])
+
+
+    def hexStringTobytes(self,str):
+        '''
+        将十六进制字符串转换为字节串
+        eg:
+        '01 23 45 67 89 AB CD EF 01 23 45 67 89 AB CD EF'
+        b'\x01#Eg\x89\xab\xcd\xef\x01#Eg\x89\xab\xcd\xef'
+        '''
+        str = str.replace(" ", "")
+        return bytes.fromhex(str)
+
 class MyDesGui:
 
     root = tk.Tk()
@@ -81,12 +103,10 @@ class MyDesGui:
             tkm.showwarning('注意','明文不能为空')
             return None
 
-        plain_text_b = self.plain_text_var.get().encode('ascii',errors='ignore')
+        plain_text_b = self.plain_text_var.get().encode(errors='ignore')
         cipher_text_b = self.des.encrypt(plain_text_b)
-        cipher_text = cipher_text_b.decode('ascii',errors='ignore')  # 将结果转换为str
-
-        tkm.showinfo('len', len(cipher_text))
-        tkm.showinfo('len_b', len(cipher_text_b))
+        #cipher_text = cipher_text_b.decode(errors='ignore')  # 将结果转换为str
+        cipher_text = self.des.bytesToHexString(cipher_text_b)
 
         self.cipher_text_var.set(cipher_text)
 
@@ -99,16 +119,14 @@ class MyDesGui:
             tkm.showwarning('注意', '密文不能为空')
             return None
 
-        cipher_text_b = self.cipher_text_var.get().encode('ascii',errors='ignore')
-        tkm.showinfo('len', len(self.cipher_text_var.get()))
-        tkm.showinfo('len', len(cipher_text_b))
+        cipher_text = self.cipher_text_var.get()
+        cipher_text_b = self.des.hexStringTobytes(cipher_text)
+
 
         plain_text_b = self.des.decrypt(cipher_text_b)
-        plain_text = plain_text_b.decode('ascii',errors='ignore')  # 将结果转换为str
-
+        #plain_text = plain_text_b.decode('ascii',errors='ignore')  # 将结果转换为str
+        plain_text = plain_text_b.decode(errors='ignore')
         self.plain_text_var.set(plain_text)
-        tkm.showinfo('text', plain_text)
-        tkm.showinfo('len', len(plain_text))
 
         return plain_text_b
 
