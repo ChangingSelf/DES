@@ -100,7 +100,7 @@ class MyDesGui:
                   command=lambda:self.encrypt(self.key_var.get())
                   ).grid(row=0,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='二重DES加密',
-                  command=lambda: self.encrypt(self.key_var.get())
+                  command=lambda: self.double_des_encrypt()
                   ).grid(row=0, column=3, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重两密加密',
                   command=lambda: self.encrypt(self.key_var.get())
@@ -116,7 +116,7 @@ class MyDesGui:
                   command=lambda:self.decrypt(self.key_var.get())
                   ).grid(row=4,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='二重DES解密',
-                  command=lambda: self.decrypt(self.key_var.get())
+                  command=lambda: self.double_des_decrypt()
                   ).grid(row=4, column=3, stick=tk.W + tk.E)
         tk.Button(des_LF, text='三重两密解密',
                   command=lambda: self.decrypt(self.key_var.get())
@@ -131,45 +131,119 @@ class MyDesGui:
 
         key_var.set(self.des.random_key())
 
+    def show_plain_text(self,plain_text_b:bytes):
+        '''
+        显示明文
+        :param plain_text_b: 明文的字节串
+        :return:
+        '''
+        plain_text = plain_text_b.decode(errors='ignore')
+        self.plain_text_var.set(plain_text)
 
+    def show_cipher_text(self,cipher_text_b:bytes):
+        '''
+        显示密文
+        :param cipher_text_b: 密文的字节串
+        :return:
+        '''
+        cipher_text = self.des.bytesToHexString(cipher_text_b)
+        # 显示密文
+        self.cipher_text_var.set(cipher_text)
 
-    def encrypt(self,key:str):
+    def encrypt(self,key:str,plain_text:str = None):
+        '''
+        DES加密
+        :param key:
+        :return:
+        '''
+        # 合法性检测
+        if not plain_text:
+            if not self.plain_text_var.get():
+                tkm.showwarning('注意', '明文不能为空')
+                return None
+            else:
+                plain_text = self.plain_text_var.get()
 
         self.des = MyDes(key)  # 刷新密钥
-
-        if not self.plain_text_var.get():
-            tkm.showwarning('注意','明文不能为空')
-            return None
-
-        plain_text_b = self.plain_text_var.get().encode(errors='ignore')
+        # 加密
+        plain_text_b = plain_text.encode(errors='ignore')
         cipher_text_b = self.des.encrypt(plain_text_b)
-        #cipher_text = cipher_text_b.decode(errors='ignore')  # 将结果转换为str
-        cipher_text = self.des.bytesToHexString(cipher_text_b)
 
-        self.cipher_text_var.set(cipher_text)
+        # 显示
+        self.show_cipher_text(cipher_text_b)
 
         return cipher_text_b
 
 
 
-    def decrypt(self,key:str):
+    def decrypt(self,key:str,cipher_text:str = None):
+        '''
+        DES解密
+        :param key:
+        :return:
+        '''
+        # 合法性检测
+        if not cipher_text:
+            if not self.cipher_text_var.get():
+                tkm.showwarning('注意', '密文不能为空')
+                return None
+            else:
+                cipher_text = self.cipher_text_var.get()
+
 
         self.des = MyDes(key)  # 刷新密钥
 
-        if not self.cipher_text_var.get():
-            tkm.showwarning('注意', '密文不能为空')
-            return None
-
-        cipher_text = self.cipher_text_var.get()
+        # 解密
         cipher_text_b = self.des.hexStringTobytes(cipher_text)
-
-
         plain_text_b = self.des.decrypt(cipher_text_b)
-        #plain_text = plain_text_b.decode('ascii',errors='ignore')  # 将结果转换为str
-        plain_text = plain_text_b.decode(errors='ignore')
-        self.plain_text_var.set(plain_text)
+
+        # 显示
+        self.show_plain_text(plain_text_b)
+
 
         return plain_text_b
+
+    def double_des_encrypt(self):
+        '''
+        二重DES加密
+        :return: 密文字节串
+        '''
+        # C = E_k2(E_k1(P))
+        x_text_b = self.encrypt(self.key_var.get())  # 用key1进行加密
+
+        if not x_text_b:
+            return None
+
+        cipher_text_b = self.encrypt(self.key2_var.get(),x_text_b.decode(errors='ignore'))  # 用key2进行加密
+
+        # 显示
+        self.show_cipher_text(cipher_text_b)
+
+        return cipher_text_b
+
+    def double_des_decrypt(self):
+        '''
+        二重DES解密
+        :return: 明文字节串
+        '''
+        # P = D_k1(D_k2(C))
+        x_text_b = self.decrypt(self.key2_var.get())  # 用key2进行解密
+
+        if not x_text_b:
+            return None
+
+        plain_text_b = self.decrypt(self.key_var.get(),x_text_b.decode(errors='ignore'))  # 用key1进行解密
+
+        # 显示
+        self.show_plain_text(plain_text_b)
+
+        return plain_text_b
+
+    def triple_two_keys_encrypt(self):
+        pass
+
+    def triple_two_keys_decrypt(self):
+        pass
 
 
 if __name__ == '__main__':
