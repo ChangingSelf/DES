@@ -137,6 +137,8 @@ class MyDesGui:
         :param plain_text_b: 明文的字节串
         :return:
         '''
+        if not plain_text_b:
+            return
         plain_text = plain_text_b.decode(errors='ignore')
         self.plain_text_var.set(plain_text)
 
@@ -146,6 +148,8 @@ class MyDesGui:
         :param cipher_text_b: 密文的字节串
         :return:
         '''
+        if not cipher_text_b:
+            return
         cipher_text = self.des.bytesToHexString(cipher_text_b)
         # 显示密文
         self.cipher_text_var.set(cipher_text)
@@ -154,6 +158,7 @@ class MyDesGui:
         '''
         DES加密
         :param key:
+        :param plain_text: 明文字符串
         :return:
         '''
         # 合法性检测
@@ -164,9 +169,10 @@ class MyDesGui:
             else:
                 plain_text = self.plain_text_var.get()
 
+        plain_text_b = plain_text.encode(errors='ignore')
+
         self.des = MyDes(key)  # 刷新密钥
         # 加密
-        plain_text_b = plain_text.encode(errors='ignore')
         cipher_text_b = self.des.encrypt(plain_text_b)
 
         # 显示
@@ -180,6 +186,7 @@ class MyDesGui:
         '''
         DES解密
         :param key:
+        :param cipher_text: 十六进制密文字符串
         :return:
         '''
         # 合法性检测
@@ -190,11 +197,10 @@ class MyDesGui:
             else:
                 cipher_text = self.cipher_text_var.get()
 
-
+        cipher_text_b = self.des.hexStringTobytes(cipher_text)
         self.des = MyDes(key)  # 刷新密钥
 
         # 解密
-        cipher_text_b = self.des.hexStringTobytes(cipher_text)
         plain_text_b = self.des.decrypt(cipher_text_b)
 
         # 显示
@@ -232,7 +238,7 @@ class MyDesGui:
         if not x_text_b:
             return None
 
-        plain_text_b = self.decrypt(self.key_var.get(),x_text_b.decode(errors='ignore'))  # 用key1进行解密
+        plain_text_b = self.decrypt(self.key_var.get(),self.des.bytesToHexString(x_text_b))  # 用key1进行解密
 
         # 显示
         self.show_plain_text(plain_text_b)
@@ -240,12 +246,35 @@ class MyDesGui:
         return plain_text_b
 
     def triple_two_keys_encrypt(self):
-        pass
+        '''
+        三重两密加密
+        :return:
+        '''
+        # C = E_k1(D_k2(E_k1(P)))
+        a_text_b = self.encrypt(self.key_var.get())
+        b_text_b = self.decrypt(self.key2_var.get(),a_text_b)
+        cipher_text_b = self.encrypt(self.key_var.get(),b_text_b)
+
+        self.show_cipher_text(cipher_text_b)
+
+        return cipher_text_b
+
+
+
 
     def triple_two_keys_decrypt(self):
-        pass
+        '''
+        三重两密解密
+        :return:
+        '''
+        # P = D_k1(E_k2(D_k1(C)))
+        b_text_b = self.decrypt(self.key_var.get())
+        a_text_b = self.encrypt(self.key2_var.get(),b_text_b)
+        plain_text_b = self.decrypt(self.key_var.get(),a_text_b)
 
+        self.show_plain_text(plain_text_b)
 
+        return plain_text_b
 if __name__ == '__main__':
     myGui = MyDesGui()
 
