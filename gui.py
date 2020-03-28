@@ -154,59 +154,40 @@ class MyDesGui:
         # 显示密文
         self.cipher_text_var.set(cipher_text)
 
-    def encrypt(self,key:str,plain_text:str = None):
+    def encrypt(self,key:str,plain_text_b:bytes = None):
         '''
         DES加密
         :param key:
-        :param plain_text: 明文字符串
+        :param plain_text_b: 明文字节串
         :return:
         '''
-        # 合法性检测
-        if not plain_text:
-            if not self.plain_text_var.get():
-                tkm.showwarning('注意', '明文不能为空')
-                return None
-            else:
-                plain_text = self.plain_text_var.get()
-
-        plain_text_b = plain_text.encode(errors='ignore')
+        if plain_text_b == None:
+            plain_text_b = self.plain_text_var.get().encode()
 
         self.des = MyDes(key)  # 刷新密钥
         # 加密
         cipher_text_b = self.des.encrypt(plain_text_b)
-
         # 显示
         self.show_cipher_text(cipher_text_b)
-
         return cipher_text_b
 
 
 
-    def decrypt(self,key:str,cipher_text:str = None):
+    def decrypt(self,key:str,cipher_text_b:bytes = None):
         '''
         DES解密
         :param key:
-        :param cipher_text: 十六进制密文字符串
+        :param cipher_text_b: 8的整数倍密文字节串
         :return:
         '''
-        # 合法性检测
-        if not cipher_text:
-            if not self.cipher_text_var.get():
-                tkm.showwarning('注意', '密文不能为空')
-                return None
-            else:
-                cipher_text = self.cipher_text_var.get()
+        if cipher_text_b == None:
+            cipher_text_b = self.des.hexStringTobytes(self.cipher_text_var.get())
 
-        cipher_text_b = self.des.hexStringTobytes(cipher_text)
         self.des = MyDes(key)  # 刷新密钥
-
         # 解密
         plain_text_b = self.des.decrypt(cipher_text_b)
-
         # 显示
         self.show_plain_text(plain_text_b)
-
-
         return plain_text_b
 
     def double_des_encrypt(self):
@@ -220,7 +201,7 @@ class MyDesGui:
         if not x_text_b:
             return None
 
-        cipher_text_b = self.encrypt(self.key2_var.get(),x_text_b.decode(errors='ignore'))  # 用key2进行加密
+        cipher_text_b = self.encrypt(self.key2_var.get(),x_text_b)  # 用key2进行加密
 
         # 显示
         self.show_cipher_text(cipher_text_b)
@@ -238,7 +219,7 @@ class MyDesGui:
         if not x_text_b:
             return None
 
-        plain_text_b = self.decrypt(self.key_var.get(),self.des.bytesToHexString(x_text_b))  # 用key1进行解密
+        plain_text_b = self.decrypt(self.key_var.get(),x_text_b)  # 用key1进行解密
 
         # 显示
         self.show_plain_text(plain_text_b)
@@ -275,6 +256,13 @@ class MyDesGui:
         self.show_plain_text(plain_text_b)
 
         return plain_text_b
+
+    def triple_three_keys_encrypt(self):
+        pass
+
+    def triple_three_keys_decrypt(self):
+        pass
+
 if __name__ == '__main__':
     myGui = MyDesGui()
 
