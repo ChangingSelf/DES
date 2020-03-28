@@ -96,11 +96,34 @@ class MyDesGui:
         tk.Entry(des_LF, textvariable=self.key3_var).grid(row=3, column=1)
         tk.Entry(des_LF,textvariable=self.cipher_text_var).grid(row=4,column=1)
         # 按钮
-        tk.Button(des_LF,text='加密',command=lambda:self.encrypt(self.key_var.get())).grid(row=0,column=2,stick=tk.W+tk.E)
+        tk.Button(des_LF,text='DES加密',
+                  command=lambda:self.encrypt(self.key_var.get())
+                  ).grid(row=0,column=2,stick=tk.W+tk.E)
+        tk.Button(des_LF, text='二重DES加密',
+                  command=lambda: self.encrypt(self.key_var.get())
+                  ).grid(row=0, column=3, stick=tk.W + tk.E)
+        tk.Button(des_LF, text='三重两密加密',
+                  command=lambda: self.encrypt(self.key_var.get())
+                  ).grid(row=0, column=4, stick=tk.W + tk.E)
+        tk.Button(des_LF, text='三重三密加密',
+                  command=lambda: self.encrypt(self.key_var.get())
+                  ).grid(row=0, column=5, stick=tk.W + tk.E)
+
         tk.Button(des_LF,text='随机生成密钥1',command=lambda:self.random_key(self.key_var)).grid(row=1,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='随机生成密钥2', command=lambda:self.random_key(self.key2_var)).grid(row=2, column=2, stick=tk.W + tk.E)
         tk.Button(des_LF, text='随机生成密钥3', command=lambda:self.random_key(self.key3_var)).grid(row=3, column=2, stick=tk.W + tk.E)
-        tk.Button(des_LF,text='解密',command=lambda:self.decrypt(self.key_var.get())).grid(row=4,column=2,stick=tk.W+tk.E)
+        tk.Button(des_LF,text='DES解密',
+                  command=lambda:self.decrypt(self.key_var.get())
+                  ).grid(row=4,column=2,stick=tk.W+tk.E)
+        tk.Button(des_LF, text='二重DES解密',
+                  command=lambda: self.decrypt(self.key_var.get())
+                  ).grid(row=4, column=3, stick=tk.W + tk.E)
+        tk.Button(des_LF, text='三重两密解密',
+                  command=lambda: self.decrypt(self.key_var.get())
+                  ).grid(row=4, column=4, stick=tk.W + tk.E)
+        tk.Button(des_LF, text='三重三密解密',
+                  command=lambda: self.decrypt(self.key_var.get())
+                  ).grid(row=4, column=5, stick=tk.W + tk.E)
 
     def random_key(self,key_var:tk.StringVar=None):
         if not key_var:
