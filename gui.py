@@ -83,23 +83,24 @@ class MyDesGui:
         des_LF = tk.LabelFrame(self.root, text='DES')
         des_LF.grid(row=0, column=0)
 
+        # 标签
         tk.Label(des_LF, text='明文').grid(row=0, column=0)
         tk.Label(des_LF, text='密钥1').grid(row=1, column=0)
         tk.Label(des_LF, text='密钥2').grid(row=2, column=0)
         tk.Label(des_LF, text='密钥3').grid(row=3, column=0)
         tk.Label(des_LF, text='密文').grid(row=4, column=0)
-
+        # 输入框
         tk.Entry(des_LF,textvariable=self.plain_text_var).grid(row=0,column=1)
         tk.Entry(des_LF,textvariable=self.key_var).grid(row=1,column=1)
         tk.Entry(des_LF, textvariable=self.key2_var).grid(row=2, column=1)
         tk.Entry(des_LF, textvariable=self.key3_var).grid(row=3, column=1)
         tk.Entry(des_LF,textvariable=self.cipher_text_var).grid(row=4,column=1)
-
-        tk.Button(des_LF,text='加密',command=self.encrypt).grid(row=0,column=2,stick=tk.W+tk.E,)
+        # 按钮
+        tk.Button(des_LF,text='加密',command=lambda:self.encrypt(self.key_var.get())).grid(row=0,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF,text='随机生成密钥1',command=lambda:self.random_key(self.key_var)).grid(row=1,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='随机生成密钥2', command=lambda:self.random_key(self.key2_var)).grid(row=2, column=2, stick=tk.W + tk.E)
         tk.Button(des_LF, text='随机生成密钥3', command=lambda:self.random_key(self.key3_var)).grid(row=3, column=2, stick=tk.W + tk.E)
-        tk.Button(des_LF,text='解密',command=self.decrypt).grid(row=4,column=2,stick=tk.W+tk.E)
+        tk.Button(des_LF,text='解密',command=lambda:self.decrypt(self.key_var.get())).grid(row=4,column=2,stick=tk.W+tk.E)
 
     def random_key(self,key_var:tk.StringVar=None):
         if not key_var:
