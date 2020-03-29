@@ -25,7 +25,7 @@ class MyDes:
         :param plain_text: 明文
         :return: 密文
         '''
-        return self.des.encrypt(plain_text,padmode=pyDes.PAD_PKCS5)
+        return self.des.encrypt(plain_text,pad=' ',padmode=pyDes.PAD_NORMAL)
 
 
     def decrypt(self,cipher_text:bytes) -> bytes:
@@ -76,6 +76,8 @@ class MyDesGui:
     def __init__(self):
         self.initComponent()
         self.random_key()  # 随机密钥
+        self.random_key(self.key2_var)
+        self.random_key(self.key3_var)
         self.root.mainloop()
 
     def initComponent(self):
@@ -139,7 +141,7 @@ class MyDesGui:
         '''
         if not plain_text_b:
             return
-        plain_text = plain_text_b.decode(errors='ignore')
+        plain_text = plain_text_b.decode(errors='ignore').strip()
         self.plain_text_var.set(plain_text)
 
     def show_cipher_text(self,cipher_text_b:bytes):
@@ -150,7 +152,7 @@ class MyDesGui:
         '''
         if not cipher_text_b:
             return
-        cipher_text = self.des.bytesToHexString(cipher_text_b)
+        cipher_text = self.des.bytesToHexString(cipher_text_b).strip()
         # 显示密文
         self.cipher_text_var.set(cipher_text)
 
