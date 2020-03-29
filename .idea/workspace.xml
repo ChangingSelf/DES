@@ -155,38 +155,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="848" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1585440772879" />
-    <state width="1515" height="151" key="GridCell.Tab.0.bottom" timestamp="1585441213935">
+    <state width="1515" height="151" key="GridCell.Tab.0.bottom" timestamp="1585442694504">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="151" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585441213935" />
-    <state width="1515" height="151" key="GridCell.Tab.0.center" timestamp="1585441213935">
+    <state width="1515" height="151" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585442694504" />
+    <state width="1515" height="151" key="GridCell.Tab.0.center" timestamp="1585442694503">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="151" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585441213935" />
-    <state width="1515" height="151" key="GridCell.Tab.0.left" timestamp="1585441213935">
+    <state width="1515" height="151" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585442694503" />
+    <state width="1515" height="151" key="GridCell.Tab.0.left" timestamp="1585442694503">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="151" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585441213935" />
-    <state width="1515" height="151" key="GridCell.Tab.0.right" timestamp="1585441213935">
+    <state width="1515" height="151" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585442694503" />
+    <state width="1515" height="151" key="GridCell.Tab.0.right" timestamp="1585442694504">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="151" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585441213935" />
-    <state width="1515" height="258" key="GridCell.Tab.1.bottom" timestamp="1585440883472">
+    <state width="1515" height="151" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585442694504" />
+    <state width="1515" height="258" key="GridCell.Tab.1.bottom" timestamp="1585442629952">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="258" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585440883472" />
-    <state width="1515" height="258" key="GridCell.Tab.1.center" timestamp="1585440883472">
+    <state width="1515" height="258" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585442629952" />
+    <state width="1515" height="258" key="GridCell.Tab.1.center" timestamp="1585442629951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="258" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585440883472" />
-    <state width="1515" height="258" key="GridCell.Tab.1.left" timestamp="1585440883472">
+    <state width="1515" height="258" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585442629951" />
+    <state width="1515" height="258" key="GridCell.Tab.1.left" timestamp="1585442629951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="258" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585440883472" />
-    <state width="1515" height="258" key="GridCell.Tab.1.right" timestamp="1585440883472">
+    <state width="1515" height="258" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585442629951" />
+    <state width="1515" height="258" key="GridCell.Tab.1.right" timestamp="1585442629951">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="258" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585440883472" />
+    <state width="1515" height="258" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585442629951" />
     <state x="272" y="57" key="SettingsEditor" timestamp="1585141713449">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -197,13 +197,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/gui.py</url>
-          <line>253</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/gui.py</url>
-          <line>236</line>
-          <option name="timeStamp" value="6" />
+          <line>256</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

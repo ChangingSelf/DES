@@ -203,10 +203,7 @@ class MyDesGui:
         if not x_text_b:
             return None
 
-        cipher_text_b = self.encrypt(self.key2_var.get(),x_text_b)  # 用key2进行加密
-
-        # 显示
-        self.show_cipher_text(cipher_text_b)
+        cipher_text_b = self.encrypt(self.key2_var.get(),x_text_b,isShow=True)  # 用key2进行加密
 
         return cipher_text_b
 
@@ -221,10 +218,7 @@ class MyDesGui:
         if not x_text_b:
             return None
 
-        plain_text_b = self.decrypt(self.key_var.get(),x_text_b)  # 用key1进行解密
-
-        # 显示
-        self.show_plain_text(plain_text_b)
+        plain_text_b = self.decrypt(self.key_var.get(),x_text_b,isShow=True)  # 用key1进行解密
 
         return plain_text_b
 
@@ -236,10 +230,7 @@ class MyDesGui:
         # C = E_k1(D_k2(E_k1(P)))
         a_text_b = self.encrypt(self.key_var.get())
         b_text_b = self.decrypt(self.key2_var.get(),a_text_b)
-        cipher_text_b = self.encrypt(self.key_var.get(),b_text_b)
-
-        self.show_cipher_text(cipher_text_b)
-
+        cipher_text_b = self.encrypt(self.key_var.get(),b_text_b,isShow=True)
         return cipher_text_b
 
 
@@ -253,9 +244,7 @@ class MyDesGui:
         # P = D_k1(E_k2(D_k1(C)))
         b_text_b = self.decrypt(self.key_var.get())
         a_text_b = self.encrypt(self.key2_var.get(),b_text_b)
-        plain_text_b = self.decrypt(self.key_var.get(),a_text_b)
-
-        self.show_plain_text(plain_text_b)
+        plain_text_b = self.decrypt(self.key_var.get(),a_text_b,isShow=True)
 
         return plain_text_b
 
@@ -267,9 +256,7 @@ class MyDesGui:
         # C = E_k3(D_k2(E_k1(P)))
         a_text_b = self.encrypt(self.key_var.get())
         b_text_b = self.decrypt(self.key2_var.get(), a_text_b)
-        cipher_text_b = self.encrypt(self.key3_var.get(), b_text_b)
-
-        self.show_cipher_text(cipher_text_b)
+        cipher_text_b = self.encrypt(self.key3_var.get(), b_text_b,isShow=True)
 
         return cipher_text_b
 
@@ -278,12 +265,10 @@ class MyDesGui:
         三重三密解密
         :return:
         '''
-        # P = D_k3(E_k2(D_k1(C)))
-        b_text_b = self.decrypt(self.key_var.get())
+        # P = D_k1(E_k2(D_k3(C)))
+        b_text_b = self.decrypt(self.key3_var.get())
         a_text_b = self.encrypt(self.key2_var.get(), b_text_b)
-        plain_text_b = self.decrypt(self.key3_var.get(), a_text_b)
-
-        self.show_plain_text(plain_text_b)
+        plain_text_b = self.decrypt(self.key_var.get(), a_text_b,isShow=True)
 
         return plain_text_b
 
