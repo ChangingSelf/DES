@@ -133,6 +133,23 @@ class MyDesGui:
 
         key_var.set(self.des.random_key())
 
+    def check_key(self,key:str = None):
+        '''
+        检测填入密钥的合法性
+        :return: 密钥是否正确
+        '''
+        if not key:
+            keys = [self.key_var.get(),self.key2_var.get(),self.key3_var.get()]
+        else:
+            keys = [key]
+
+        for key in keys:
+            if len(key) != 8:
+                tkm.showwarning('注意','密钥长度必须为8个字符，即64bit')
+                return False
+        return True
+
+
     def show_plain_text(self,plain_text_b:bytes):
         '''
         显示明文
@@ -163,6 +180,8 @@ class MyDesGui:
         :param plain_text_b: 明文字节串
         :return:
         '''
+        if self.check_key(key) == False:
+            return None
         if plain_text_b == None:
             plain_text_b = self.plain_text_var.get().encode()
 
@@ -183,6 +202,8 @@ class MyDesGui:
         :param cipher_text_b: 8的整数倍密文字节串
         :return:
         '''
+        if self.check_key(key) == False:
+            return None
         if cipher_text_b == None:
             cipher_text_b = self.des.hexStringTobytes(self.cipher_text_var.get())
 
@@ -199,6 +220,8 @@ class MyDesGui:
         二重DES加密
         :return: 密文字节串
         '''
+        if self.check_key() == False:
+            return None
         # C = E_k2(E_k1(P))
         x_text_b = self.encrypt(self.key_var.get())  # 用key1进行加密
 
@@ -214,6 +237,8 @@ class MyDesGui:
         二重DES解密
         :return: 明文字节串
         '''
+        if self.check_key() == False:
+            return None
         # P = D_k1(D_k2(C))
         x_text_b = self.decrypt(self.key2_var.get())  # 用key2进行解密
 
@@ -229,6 +254,8 @@ class MyDesGui:
         三重两密加密
         :return:
         '''
+        if self.check_key() == False:
+            return None
         # C = E_k1(D_k2(E_k1(P)))
         a_text_b = self.encrypt(self.key_var.get())
         b_text_b = self.decrypt(self.key2_var.get(),a_text_b)
@@ -243,6 +270,8 @@ class MyDesGui:
         三重两密解密
         :return:
         '''
+        if self.check_key() == False:
+            return None
         # P = D_k1(E_k2(D_k1(C)))
         b_text_b = self.decrypt(self.key_var.get())
         a_text_b = self.encrypt(self.key2_var.get(),b_text_b)
@@ -255,6 +284,8 @@ class MyDesGui:
         三重三密加密
         :return:
         '''
+        if self.check_key() == False:
+            return None
         # C = E_k3(D_k2(E_k1(P)))
         a_text_b = self.encrypt(self.key_var.get())
         b_text_b = self.decrypt(self.key2_var.get(), a_text_b)
@@ -267,12 +298,15 @@ class MyDesGui:
         三重三密解密
         :return:
         '''
+        if self.check_key() == False:
+            return None
         # P = D_k1(E_k2(D_k3(C)))
         b_text_b = self.decrypt(self.key3_var.get())
         a_text_b = self.encrypt(self.key2_var.get(), b_text_b)
         plain_text_b = self.decrypt(self.key_var.get(), a_text_b,isShow=True)
 
         return plain_text_b
+
 
 if __name__ == '__main__':
     myGui = MyDesGui()
