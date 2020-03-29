@@ -127,6 +127,10 @@ class MyDesGui:
                   command=lambda: self.triple_three_keys_decrypt()
                   ).grid(row=4, column=5, stick=tk.W + tk.E)
 
+        prompt = '密钥长度为8个字符，即64bit;\n密文以十六进制字符串的形式展示'
+
+        tk.Label(des_LF,text=prompt).grid(row=1,column=3,columnspan=3,rowspan=3)
+
     def random_key(self,key_var:tk.StringVar=None):
         if not key_var:
             key_var = self.key_var
