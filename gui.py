@@ -16,7 +16,7 @@ class MyDes:
             self.key = self.random_key()
         else:
             self.key = key
-        self.des = pyDes.des(self.key,padmode=pyDes.PAD_PKCS5)#初始化des类
+        self.des = pyDes.des(self.key)#初始化des类
 
 
     def encrypt(self,plain_text:bytes)-> bytes:
@@ -35,7 +35,7 @@ class MyDes:
         :return: 明文
         '''
 
-        return self.des.decrypt(cipher_text,padmode=pyDes.PAD_PKCS5)
+        return self.des.decrypt(cipher_text)
 
     def random_key(self):
         alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()'
@@ -97,7 +97,7 @@ class MyDesGui:
         tk.Entry(des_LF,textvariable=self.cipher_text_var).grid(row=4,column=1)
         # 按钮
         tk.Button(des_LF,text='DES加密',
-                  command=lambda:self.encrypt(self.key_var.get())
+                  command=lambda:self.encrypt(self.key_var.get(),isShow=True)
                   ).grid(row=0,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='二重DES加密',
                   command=lambda: self.double_des_encrypt()
@@ -113,7 +113,7 @@ class MyDesGui:
         tk.Button(des_LF, text='随机生成密钥2', command=lambda:self.random_key(self.key2_var)).grid(row=2, column=2, stick=tk.W + tk.E)
         tk.Button(des_LF, text='随机生成密钥3', command=lambda:self.random_key(self.key3_var)).grid(row=3, column=2, stick=tk.W + tk.E)
         tk.Button(des_LF,text='DES解密',
-                  command=lambda:self.decrypt(self.key_var.get())
+                  command=lambda:self.decrypt(self.key_var.get(),isShow=True)
                   ).grid(row=4,column=2,stick=tk.W+tk.E)
         tk.Button(des_LF, text='二重DES解密',
                   command=lambda: self.double_des_decrypt()
@@ -154,7 +154,7 @@ class MyDesGui:
         # 显示密文
         self.cipher_text_var.set(cipher_text)
 
-    def encrypt(self,key:str,plain_text_b:bytes = None):
+    def encrypt(self,key:str,plain_text_b:bytes = None,isShow:bool = False):
         '''
         DES加密
         :param key:
@@ -168,12 +168,13 @@ class MyDesGui:
         # 加密
         cipher_text_b = self.des.encrypt(plain_text_b)
         # 显示
-        self.show_cipher_text(cipher_text_b)
+        if isShow:
+            self.show_cipher_text(cipher_text_b)
         return cipher_text_b
 
 
 
-    def decrypt(self,key:str,cipher_text_b:bytes = None):
+    def decrypt(self,key:str,cipher_text_b:bytes = None,isShow:bool = False):
         '''
         DES解密
         :param key:
@@ -187,7 +188,8 @@ class MyDesGui:
         # 解密
         plain_text_b = self.des.decrypt(cipher_text_b)
         # 显示
-        self.show_plain_text(plain_text_b)
+        if isShow:
+            self.show_plain_text(plain_text_b)
         return plain_text_b
 
     def double_des_encrypt(self):
